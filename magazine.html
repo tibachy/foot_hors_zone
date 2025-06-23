@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foot Hors Zone | Magazine Complet</title>
-    <link rel="icon" href="logo/foot hors zone pdf.png" type="image/png">
+    <link rel="icon" href="logo/foot hors zone pdf.jpeg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Variables de couleurs (reprises de l'index.html pour cohérence si besoin futur) */
@@ -176,10 +176,10 @@
             <div class="page" style="background-image: url('magazine-pages/page 3.jpg');"></div>
             <div class="page" style="background-image: url('magazine-pages/page 4 projet le club vert.jpg');"></div>
             <div class="page" style="background-image: url('magazine-pages/page 5 joeur bio.jpg');"></div>
-            <div class="page" style="background-image: url('magazine-pages/PAGE 6 phrases écolo.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/PAGE 6  phrases écolo.jpg');"></div>
             <div class="page" style="background-image: url('magazine-pages/page 7 stade et déchet.jpg');"></div>
             <div class="page" style="background-image: url('magazine-pages/page 8 conclusion.jpg');"></div>
-            </div>
+        </div>
 
         <button class="nav-button prev-button" id="prevPage"><i class="fas fa-chevron-left"></i></button>
         <button class="nav-button next-button" id="nextPage"><i class="fas fa-chevron-right"></i></button>
@@ -195,20 +195,16 @@
         const pages = document.querySelectorAll('.page');
         let currentPageIndex = 0;
 
-        // Fonction pour mettre à jour l'affichage du magazine
         function updateMagazine() {
-            const pageWidth = magazineInner.clientWidth; // Largeur du conteneur intérieur
+            const pageWidth = magazineInner.clientWidth;
             magazineInner.style.transform = `translateX(-${currentPageIndex * pageWidth}px)`;
 
-            // Mettre à jour l'indicateur de page
             pageIndicator.textContent = `${currentPageIndex + 1} / ${pages.length}`;
 
-            // Gérer la visibilité des boutons de navigation (cache les boutons si on est aux extrémités)
             prevButton.style.display = currentPageIndex === 0 ? 'none' : 'block';
             nextButton.style.display = currentPageIndex === pages.length - 1 ? 'none' : 'block';
         }
 
-        // Gestionnaire d'événement pour le bouton précédent
         prevButton.addEventListener('click', () => {
             if (currentPageIndex > 0) {
                 currentPageIndex--;
@@ -216,4 +212,29 @@
             }
         });
 
-        // Gestionnaire d'événement pour le
+        nextButton.addEventListener('click', () => {
+            if (currentPageIndex < pages.length - 1) {
+                currentPageIndex++;
+                updateMagazine();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    updateMagazine();
+                }
+            } else if (event.key === 'ArrowRight') {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    updateMagazine();
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', updateMagazine);
+        window.addEventListener('resize', updateMagazine);
+    </script>
+</body>
+</html>
