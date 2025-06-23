@@ -3,262 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foot Hors Zone | Le Magazine Complet</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Foot Hors Zone | Magazine Complet</title>
+    <link rel="icon" href="logo/foot hors zone pdf.png" type="image/png">
     <style>
-        /* Styles de base - Doit être cohérent avec votre site principal */
-        :root {
-            --primary: #0c4a6e; /* Bleu foncé */
-            --secondary: #e11d48; /* Rouge vif */
-            --accent: #059669; /* Vert engagement */
-            --light: #f0f9ff; /* Blanc cassé / très clair */
-            --dark: #082f49; /* Bleu très foncé, presque noir */
-            --gray: #64748b; /* Gris moyen */
-        }
-
         body {
-            background-color: var(--light); /* Fond clair pour la page magazine */
-            color: var(--dark);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
+            overflow: hidden; /* Empêche le défilement de la page elle-même */
+            background-color: #f0f0f0; /* Un fond neutre pour la page du magazine */
             display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* S'assurer que le body prend toute la hauteur */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* En-tête simplifié pour la page magazine */
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .header-content .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .header-content .logo i {
-            color: var(--secondary);
-            font-size: 2.2rem;
-        }
-        .back-button {
-            background-color: var(--secondary);
-            color: white;
-            padding: 8px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .back-button:hover {
-            background-color: #c01a3e;
-        }
-
-
-        /* Section du magazine */
-        .magazine-section {
-            flex-grow: 1; /* Permet à cette section de prendre l'espace disponible */
-            padding: 50px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .magazine-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-            text-align: center;
-        }
-
-        /* Magazine Slider specific styles (copied from previous code) */
-        .magazine-slider {
+        .magazine-container {
+            width: 90vw; /* Largeur relative à la fenêtre */
+            height: 90vh; /* Hauteur relative à la fenêtre */
+            max-width: 1200px; /* Largeur maximale pour les grands écrans */
+            max-height: 800px; /* Hauteur maximale */
             position: relative;
-            width: 100%;
-            max-width: 800px; /* Taille plus grande pour la page dédiée */
-            height: 90vh; /* Prend une bonne partie de la hauteur de la fenêtre */
-            max-height: 800px; /* Limite la hauteur pour les grands écrans */
-            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: #fff; /* Fond blanc pour le magazine */
+            border-radius: 8px;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background-color: white;
-            display: flex;
-            align-items: center;
+            display: flex; /* Utilise flexbox pour centrer et gérer le contenu */
             justify-content: center;
+            align-items: center;
         }
 
-        .magazine-page-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* L'image s'adapte sans être coupée */
-            display: block;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out; /* Animation de fondu */
+        .magazine {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%; /* Le magazine prend toute la hauteur du conteneur */
         }
 
-        .magazine-page-image.hidden {
-            opacity: 0;
-            position: absolute;
+        .page {
+            flex-shrink: 0; /* Empêche les pages de rétrécir */
+            width: 100%; /* Chaque page prend 100% de la largeur du magazine-container */
+            height: 100%; /* Chaque page prend 100% de la hauteur */
+            background-size: contain; /* L'image s'adapte à la page sans être coupée */
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden; /* Empêche l'image de déborder si elle est plus grande que la page */
+            display: flex; /* Permet de centrer le contenu si besoin, mais ici c'est une image */
+            justify-content: center;
+            align-items: center;
         }
 
-        .slider-nav {
+        .nav-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 15px 10px;
             cursor: pointer;
-            font-size: 1.8rem; /* Flèches plus grandes */
-            border-radius: 50%;
-            transition: background-color 0.3s;
+            font-size: 2rem;
             z-index: 10;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
-        .slider-nav:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
-        .prev-btn {
+        .prev-button {
             left: 10px;
         }
 
-        .next-btn {
+        .next-button {
             right: 10px;
         }
 
-        /* Footer simplifié */
-        footer {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 20px;
-            text-align: center;
-            margin-top: auto; /* Pousse le footer vers le bas */
-        }
-        footer p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            z-index: 20;
+            transition: background-color 0.3s;
+            text-decoration: none; /* Pour si c'est un <a> */
         }
 
-        /* Responsive Design */
+        .close-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Indicateur de page */
+        .page-indicator {
+            position: absolute;
+            bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .magazine-section {
-                padding: 30px 10px;
+            .magazine-container {
+                width: 98vw;
+                height: 98vh;
             }
-            .magazine-section h1 {
-                font-size: 2rem;
-            }
-            .magazine-slider {
-                height: 70vh; /* Ajuste la hauteur pour les petits écrans */
-                max-width: 95%;
-            }
-            .slider-nav {
-                padding: 8px 12px;
+            .nav-button {
+                padding: 10px 7px;
                 font-size: 1.5rem;
             }
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
+            .close-button {
+                padding: 5px 10px;
+                font-size: 1rem;
+            }
+            .page-indicator {
+                font-size: 0.8rem;
+                bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo"><i class="fas fa-futbol"></i> Foot Hors Zone</a>
-            <a href="index.html#feuilleter" class="back-button"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
-        </div>
-    </header>
+    <div class="magazine-container">
+        <a href="index.html" class="close-button">X Fermer</a>
 
-    <main>
-        <section class="magazine-section">
-            <h1>Découvrez le magazine Foot Hors Zone</h1>
-            <div class="magazine-slider">
-                <img src="magazine-pages/couverture.jpg" alt="Couverture du magazine" id="magazinePage" class="magazine-page-image">
-                
-                <button class="slider-nav prev-btn" id="prevPage"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-nav next-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+        <div class="magazine" id="magazine">
+            <div class="page" style="background-image: url('magazine-pages/couverture.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/page 2.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/page 3.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/page 4 projet le club vert.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/page 5 joeur bio.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/PAGE 6 phrases écolo.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/page 7 stade et déchet.jpg');"></div>
+            <div class="page" style="background-image: url('magazine-pages/page 8 conclusion.jpg');"></div>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2025 Foot Hors Zone. Tous droits réservés.</p>
-    </footer>
+        <button class="nav-button prev-button" id="prevPage">&#10094;</button>
+        <button class="nav-button next-button" id="nextPage">&#10095;</button>
+
+        <div class="page-indicator" id="pageIndicator"></div>
+    </div>
 
     <script>
-        // Magazine Slider Logic
-        const magazinePages = [
-            'couverture.jpg',
-            'page 2.jpg',
-            'page 3.jpg',
-            'page 4 projet le club vert.jpg',
-            'page 5 joeur bio.jpg',
-            'PAGE 6 phrases écolo.jpg',
-            'page 7 stade et déchet.jpg',
-            'page 8 conclusion.jpg'
-        ]; // Noms de vos fichiers JPEG dans l'ordre EXACT et avec la bonne casse
-
+        const magazine = document.getElementById('magazine');
+        const prevButton = document.getElementById('prevPage');
+        const nextButton = document.getElementById('nextPage');
+        const pageIndicator = document.getElementById('pageIndicator');
+        const pages = document.querySelectorAll('.page'); // Sélectionne toutes les pages
         let currentPageIndex = 0;
-        const magazinePageImg = document.getElementById('magazinePage');
-        const prevPageBtn = document.getElementById('prevPage');
-        const nextPageBtn = document.getElementById('nextPage');
 
-        function updateMagazinePage() {
-            magazinePageImg.classList.add('hidden'); // Ajoute la classe pour commencer le fondu
+        // Fonction pour mettre à jour l'affichage du magazine
+        function updateMagazine() {
+            const pageWidth = magazine.clientWidth; // Largeur du conteneur du magazine
+            magazine.style.transform = `translateX(-${currentPageIndex * pageWidth}px)`;
 
-            setTimeout(() => {
-                magazinePageImg.src = `magazine-pages/${magazinePages[currentPageIndex]}`;
-                magazinePageImg.classList.remove('hidden'); // Retire la classe après le délai
-            }, 500); // Doit correspondre à la durée de transition CSS
+            // Mettre à jour l'indicateur de page
+            pageIndicator.textContent = `${currentPageIndex + 1} / ${pages.length}`;
+
+            // Gérer la visibilité des boutons de navigation
+            prevButton.style.display = currentPageIndex === 0 ? 'none' : 'block';
+            nextButton.style.display = currentPageIndex === pages.length - 1 ? 'none' : 'block';
         }
 
-        prevPageBtn.addEventListener('click', () => {
+        // Gestionnaire d'événement pour le bouton précédent
+        prevButton.addEventListener('click', () => {
             if (currentPageIndex > 0) {
                 currentPageIndex--;
-                updateMagazinePage();
+                updateMagazine();
             }
         });
 
-        nextPageBtn.addEventListener('click', () => {
-            if (currentPageIndex < magazinePages.length - 1) {
+        // Gestionnaire d'événement pour le bouton suivant
+        nextButton.addEventListener('click', () => {
+            if (currentPageIndex < pages.length - 1) {
                 currentPageIndex++;
-                updateMagazinePage();
+                updateMagazine();
             }
         });
 
-        // Initialisation (affiche la première page au chargement)
-        // L'image est déjà initialisée via l'attribut src dans le HTML, mais c'est une bonne pratique
-        // d'avoir la logique ici aussi si besoin de recharger l'état.
-        // updateMagazinePage(); // Décommenter si vous voulez forcer une transition au chargement
+        // Gestionnaire d'événements pour les flèches du clavier
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    updateMagazine();
+                }
+            } else if (event.key === 'ArrowRight') {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    updateMagazine();
+                }
+            }
+        });
+
+        // Initialiser le magazine au chargement de la page
+        document.addEventListener('DOMContentLoaded', updateMagazine);
+        window.addEventListener('resize', updateMagazine); // Ajuster en cas de redimensionnement de la fenêtre
     </script>
 </body>
 </html>
