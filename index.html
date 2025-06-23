@@ -127,12 +127,12 @@
             border-radius: 5px;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            border: none; /* Add border: none for buttons */
-            cursor: pointer; /* Ensure button has pointer cursor */
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
-            background-color: #c01a3e; /* Darker secondary */
+            background-color: #c01a3e;
             transform: translateY(-2px);
         }
 
@@ -224,10 +224,11 @@
             margin: 0 auto 40px auto;
         }
 
-        /* Browser Section - Nouvelle mise en page pour le lecteur de magazine */
+        /* Browser Section (simplifié pour index.html) */
         .browser-section {
             padding: 80px 20px;
             background-color: var(--light);
+            text-align: center; /* Centre le contenu de la section */
         }
 
         .browser-container {
@@ -243,8 +244,8 @@
         .browser-content {
             flex: 1;
             min-width: 300px;
-            max-width: 500px;
-            text-align: left;
+            max-width: 700px; /* Plus large car pas d'image à côté */
+            text-align: center; /* Centre le texte */
         }
 
         .browser-content h2 {
@@ -258,92 +259,7 @@
             margin-bottom: 30px;
             color: var(--gray);
         }
-
-        /* Magazine Slider specific styles */
-        .magazine-slider {
-            position: relative;
-            width: 100%;
-            max-width: 400px; /* Taille de l'aperçu du magazine */
-            height: 550px; /* Ajustez si nécessaire pour vos images */
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background-color: white; /* Pour les marges éventuelles des images */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .magazine-page-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* L'image s'adapte sans être coupée */
-            display: block;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out; /* Animation de fondu */
-        }
-
-        .magazine-page-image.hidden {
-            opacity: 0;
-            position: absolute; /* Pour que les images se superposent pendant la transition */
-        }
-
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-            z-index: 10; /* Pour s'assurer que les boutons sont au-dessus de l'image */
-        }
-
-        .slider-nav:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        /* Ajustements pour le conteneur QR */
-        .qr-container {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column; /* Changé pour une meilleure disposition */
-            align-items: center; /* Centrer les éléments */
-            gap: 5px; /* Réduit l'espace */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .qr-container img { /* Utilisez img au lieu de .qr-code si c'est une image */
-            width: 80px;
-            height: 80px;
-        }
-
-        .qr-container p { /* Utilisez p au lieu de .qr-text */
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.9rem; /* Ajuste la taille de la police */
-            line-height: 1.2;
-        }
-
+        
         /* Newsletter Section */
         .newsletter-section {
             background-color: var(--dark);
@@ -389,7 +305,7 @@
         }
 
         .newsletter-form .btn:hover {
-            background-color: #047857; /* Darker accent */
+            background-color: #047857;
         }
 
         /* Footer */
@@ -462,27 +378,27 @@
 
             .mobile-menu-toggle {
                 display: block;
-                order: 1; /* Place le bouton de menu en premier */
+                order: 1;
                 margin-top: 10px;
                 width: 100%;
                 text-align: right;
             }
 
             .logo {
-                order: 2; /* Place le logo après le bouton de menu (sur la ligne du dessous) */
+                order: 2;
                 width: 100%;
                 justify-content: center;
-                margin-bottom: 15px; /* Espace entre logo et menu */
+                margin-bottom: 15px;
             }
 
             .nav-menu {
                 flex-direction: column;
                 width: 100%;
-                display: none; /* Hidden by default for mobile */
+                display: none;
                 text-align: center;
                 background: linear-gradient(135deg, var(--primary), var(--dark));
                 position: absolute;
-                top: 70px; /* Adjust based on header height */
+                top: 70px;
                 left: 0;
                 right: 0;
                 padding: 20px 0;
@@ -491,7 +407,7 @@
             }
 
             .nav-menu.active {
-                display: flex; /* Show when active */
+                display: flex;
             }
 
             .nav-menu li {
@@ -517,35 +433,13 @@
             .cta-section h2 {
                 font-size: 2.5rem;
             }
-
+            
             .browser-container {
                 flex-direction: column;
-                text-align: center;
             }
 
             .browser-content {
                 max-width: 100%;
-                text-align: center;
-            }
-
-            /* Responsive pour le slider */
-            .magazine-slider {
-                height: 450px; /* Ajuste la hauteur pour les petits écrans */
-                max-width: 300px; /* Ajuste la largeur pour les petits écrans */
-            }
-            .slider-nav {
-                padding: 8px 12px;
-                font-size: 1.2rem;
-            }
-            .qr-container {
-                position: static; /* Positionne le QR code sous le slider sur mobile */
-                margin-top: 20px;
-                flex-direction: row; /* Remet en ligne pour le mobile */
-                justify-content: center;
-                gap: 10px;
-            }
-            .qr-container p {
-                font-size: 0.8rem;
             }
 
             .newsletter-form input[type="email"],
@@ -653,22 +547,10 @@
         <section class="browser-section" id="feuilleter">
             <div class="container browser-container">
                 <div class="browser-content">
-                    <h2>Feuilletez notre magazine</h2>
-                    <p>Découvrez l'intégralité de notre première édition en version numérique. Parcourez chaque page, découvrez nos reportages exclusifs et nos analyses approfondies sur l'engagement écologique dans le monde du football.</p>
-                    <a href="projet magazine.pdf" target="_blank" class="btn">Télécharger le magazine (PDF)</a>
-                </div>
-                <div class="browser-image">
-                    <div class="magazine-slider">
-                        <img src="magazine-pages/couverture.jpg" alt="Couverture du magazine" id="magazinePage" class="magazine-page-image">
-                        
-                        <button class="slider-nav prev-btn" id="prevPage"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slider-nav next-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                    <h2>Lisez notre magazine complet !</h2>
+                    <p>Accédez à l'intégralité de notre première édition. Plongez dans des analyses exclusives et des reportages inédits sur l'engagement écologique dans le football.</p>
+                    <a href="magazine.html" class="btn">Lire le magazine complet</a>
                     </div>
-                    <div class="qr-container">
-                        <img src="https://via.placeholder.com/100x100/e11d48/ffffff?text=QR" alt="QR Code">
-                        <p>Scannez pour lire<br>sur mobile</p>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -745,63 +627,6 @@
                 }
             });
         });
-
-        // Magazine Slider Logic
-        const magazinePages = [
-            'couverture.jpg',
-            'page 2.jpg',
-            'page 3.jpg',
-            'page 4 projet le club vert.jpg',
-            'page 5 joeur bio.jpg',
-            'PAGE 6 phrases écolo.jpg',
-            'page 7 stade et déchet.jpg',
-            'page 8 conclusion.jpg'
-        ]; // Noms de vos fichiers JPEG dans l'ordre EXACT et avec la bonne casse
-
-        let currentPageIndex = 0;
-        const magazinePageImg = document.getElementById('magazinePage');
-        const prevPageBtn = document.getElementById('prevPage');
-        const nextPageBtn = document.getElementById('nextPage');
-
-        function updateMagazinePage() {
-            // Ajoute la classe 'hidden' pour commencer l'animation de fondu
-            magazinePageImg.classList.add('hidden');
-
-            // Attend la fin de l'animation (0.5s), puis change l'image et retire la classe
-            // Le délai doit correspondre à la durée de transition CSS (transition: opacity 0.5s)
-            setTimeout(() => {
-                magazinePageImg.src = `magazine-pages/${magazinePages[currentPageIndex]}`;
-                magazinePageImg.classList.remove('hidden');
-            }, 500); 
-        }
-
-        prevPageBtn.addEventListener('click', () => {
-            if (currentPageIndex > 0) {
-                currentPageIndex--;
-                updateMagazinePage();
-            } else {
-                // Optionnel: revenir à la dernière page si on est sur la première
-                // currentPageIndex = magazinePages.length - 1;
-                // updateMagazinePage();
-            }
-        });
-
-        nextPageBtn.addEventListener('click', () => {
-            if (currentPageIndex < magazinePages.length - 1) {
-                currentPageIndex++;
-                updateMagazinePage();
-            } else {
-                // Optionnel: revenir à la première page si on est sur la dernière
-                // currentPageIndex = 0;
-                // updateMagazinePage();
-            }
-        });
-
-        // Initialisation: S'assurer que la première page est la bonne au chargement
-        // Cela est déjà géré par l'attribut src initial de l'image dans le HTML
-        // mais c'est une bonne pratique d'avoir la logique ici aussi si l'ordre changeait
-        // magazinePageImg.src = `magazine-pages/${magazinePages[currentPageIndex]}`; // Déjà fait en HTML
     </script>
 </body>
 </html>
-```
