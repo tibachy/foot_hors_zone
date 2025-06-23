@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foot Hors Zone | Magazine Complet</title>
     <link rel="icon" href="logo/foot hors zone pdf.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variables de couleurs (reprises de l'index.html pour cohérence si besoin futur) */
+        :root {
+            --primary: #6BA539; /* Vert forêt */
+            --secondary: #6BC4CE; /* Bleu-vert eau */
+            --accent: #A8D08D; /* Vert clair */
+            --light: #E6E6E6; /* Gris très clair */
+            --dark: #8C5E3C; /* Brun terre */
+            --gray: #EAD98B; /* Jaune sable */
+        }
+
         body {
             margin: 0;
             overflow: hidden; /* Empêche le défilement de la page elle-même */
@@ -13,115 +24,138 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 100vh; /* S'assure que le corps prend toute la hauteur de la fenêtre */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Reprise de la police */
         }
 
-        .magazine-container {
-            width: 90vw; /* Largeur relative à la fenêtre */
-            height: 90vh; /* Hauteur relative à la fenêtre */
+        .magazine-viewer {
+            width: 95vw; /* Largeur relative à la fenêtre */
+            height: 95vh; /* Hauteur relative à la fenêtre */
             max-width: 1200px; /* Largeur maximale pour les grands écrans */
             max-height: 800px; /* Hauteur maximale */
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            background-color: #fff; /* Fond blanc pour le magazine */
-            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Ombre plus prononcée */
+            background-color: #fff;
+            border-radius: 12px; /* Bords légèrement plus arrondis */
             overflow: hidden;
-            display: flex; /* Utilise flexbox pour centrer et gérer le contenu */
+            display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .magazine {
+        .magazine-inner {
             display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%; /* Le magazine prend toute la hauteur du conteneur */
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease-in-out; /* Transition plus douce */
         }
 
         .page {
             flex-shrink: 0; /* Empêche les pages de rétrécir */
-            width: 100%; /* Chaque page prend 100% de la largeur du magazine-container */
-            height: 100%; /* Chaque page prend 100% de la hauteur */
+            width: 100%; /* Chaque page prend 100% de la largeur du magazine-viewer */
+            height: 100%;
             background-size: contain; /* L'image s'adapte à la page sans être coupée */
             background-repeat: no-repeat;
             background-position: center;
-            overflow: hidden; /* Empêche l'image de déborder si elle est plus grande que la page */
-            display: flex; /* Permet de centrer le contenu si besoin, mais ici c'est une image */
+            display: flex;
             justify-content: center;
             align-items: center;
+            color: #333; /* Couleur de texte par défaut pour les pages */
+            font-size: 1.2rem;
+            text-align: center;
+            /* Ici, les images de fond seront définies par le script ou directement */
         }
 
+        /* Boutons de navigation */
         .nav-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6); /* Plus sombre */
             color: white;
             border: none;
-            padding: 15px 10px;
+            padding: 20px 15px; /* Plus grands */
             cursor: pointer;
-            font-size: 2rem;
+            font-size: 2.5rem; /* Plus grande taille d'icône */
             z-index: 10;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 8px; /* Bords arrondis */
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex; /* Centrer l'icône */
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8; /* Légèrement transparent par défaut */
         }
 
         .nav-button:hover {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8); /* Encore plus sombre au survol */
+            transform: translateY(-50%) scale(1.05); /* Léger agrandissement */
+            opacity: 1;
         }
 
         .prev-button {
-            left: 10px;
+            left: 15px; /* Marge par rapport au bord */
         }
 
         .next-button {
-            right: 10px;
+            right: 15px; /* Marge par rapport au bord */
         }
 
         .close-button {
             position: absolute;
             top: 15px;
-            right: 15px;
-            background-color: rgba(0, 0, 0, 0.6);
+            right: 20px; /* Un peu plus d'espace */
+            background-color: var(--primary); /* Utilisation de la couleur primaire */
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             cursor: pointer;
-            font-size: 1.2rem;
-            border-radius: 5px;
+            font-size: 1.1rem;
+            border-radius: 30px; /* Pilule */
             z-index: 20;
-            transition: background-color 0.3s;
-            text-decoration: none; /* Pour si c'est un <a> */
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Espace entre l'icône et le texte */
         }
 
         .close-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: var(--dark); /* Couleur plus foncée au survol */
+            transform: translateY(-2px);
         }
 
         /* Indicateur de page */
         .page-indicator {
             position: absolute;
             bottom: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7); /* Plus opaque */
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 8px 18px; /* Plus grand */
+            border-radius: 25px; /* Plus arrondi */
+            font-size: 1rem;
+            font-weight: 500;
             z-index: 10;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .magazine-container {
+            .magazine-viewer {
                 width: 98vw;
                 height: 98vh;
+                border-radius: 0; /* Plus de bords arrondis sur mobile pour maximiser l'espace */
+                box-shadow: none; /* Pas d'ombre sur mobile pour un look "full screen" */
             }
             .nav-button {
-                padding: 10px 7px;
-                font-size: 1.5rem;
+                padding: 15px 10px;
+                font-size: 2rem;
+                left: 5px;
+                right: 5px;
             }
             .close-button {
-                padding: 5px 10px;
-                font-size: 1rem;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                top: 10px;
+                right: 10px;
             }
             .page-indicator {
                 font-size: 0.8rem;
@@ -131,10 +165,12 @@
     </style>
 </head>
 <body>
-    <div class="magazine-container">
-        <a href="index.html" class="close-button">X Fermer</a>
+    <div class="magazine-viewer">
+        <a href="index.html" class="close-button">
+            <i class="fas fa-times"></i> Fermer
+        </a>
 
-        <div class="magazine" id="magazine">
+        <div class="magazine-inner" id="magazineInner">
             <div class="page" style="background-image: url('magazine-pages/couverture.jpg');"></div>
             <div class="page" style="background-image: url('magazine-pages/page 2.jpg');"></div>
             <div class="page" style="background-image: url('magazine-pages/page 3.jpg');"></div>
@@ -145,29 +181,29 @@
             <div class="page" style="background-image: url('magazine-pages/page 8 conclusion.jpg');"></div>
             </div>
 
-        <button class="nav-button prev-button" id="prevPage">&#10094;</button>
-        <button class="nav-button next-button" id="nextPage">&#10095;</button>
+        <button class="nav-button prev-button" id="prevPage"><i class="fas fa-chevron-left"></i></button>
+        <button class="nav-button next-button" id="nextPage"><i class="fas fa-chevron-right"></i></button>
 
         <div class="page-indicator" id="pageIndicator"></div>
     </div>
 
     <script>
-        const magazine = document.getElementById('magazine');
+        const magazineInner = document.getElementById('magazineInner');
         const prevButton = document.getElementById('prevPage');
         const nextButton = document.getElementById('nextPage');
         const pageIndicator = document.getElementById('pageIndicator');
-        const pages = document.querySelectorAll('.page'); // Sélectionne toutes les pages
+        const pages = document.querySelectorAll('.page');
         let currentPageIndex = 0;
 
         // Fonction pour mettre à jour l'affichage du magazine
         function updateMagazine() {
-            const pageWidth = magazine.clientWidth; // Largeur du conteneur du magazine
-            magazine.style.transform = `translateX(-${currentPageIndex * pageWidth}px)`;
+            const pageWidth = magazineInner.clientWidth; // Largeur du conteneur intérieur
+            magazineInner.style.transform = `translateX(-${currentPageIndex * pageWidth}px)`;
 
             // Mettre à jour l'indicateur de page
             pageIndicator.textContent = `${currentPageIndex + 1} / ${pages.length}`;
 
-            // Gérer la visibilité des boutons de navigation
+            // Gérer la visibilité des boutons de navigation (cache les boutons si on est aux extrémités)
             prevButton.style.display = currentPageIndex === 0 ? 'none' : 'block';
             nextButton.style.display = currentPageIndex === pages.length - 1 ? 'none' : 'block';
         }
@@ -180,32 +216,4 @@
             }
         });
 
-        // Gestionnaire d'événement pour le bouton suivant
-        nextButton.addEventListener('click', () => {
-            if (currentPageIndex < pages.length - 1) {
-                currentPageIndex++;
-                updateMagazine();
-            }
-        });
-
-        // Gestionnaire d'événements pour les flèches du clavier
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
-                if (currentPageIndex > 0) {
-                    currentPageIndex--;
-                    updateMagazine();
-                }
-            } else if (event.key === 'ArrowRight') {
-                if (currentPageIndex < pages.length - 1) {
-                    currentPageIndex++;
-                    updateMagazine();
-                }
-            }
-        });
-
-        // Initialiser le magazine au chargement de la page
-        document.addEventListener('DOMContentLoaded', updateMagazine);
-        window.addEventListener('resize', updateMagazine); // Ajuster en cas de redimensionnement de la fenêtre
-    </script>
-</body>
-</html>
+        // Gestionnaire d'événement pour le
