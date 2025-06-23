@@ -1,1192 +1,2137 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foot Hors Zone | Magazine de football engagé</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #6BA539; /* Vert forêt */
-            --secondary: #6BC4CE; /* Bleu-vert eau */
-            --accent: #A8D08D; /* Vert clair */
-            --light: #E6E6E6; /* Gris très clair */
-            --dark: #8C5E3C; /* Brun terre */
-            --gray: #EAD98B; /* Jaune sable */
-        }
-
-        body {
-            background-color: #f8fafc;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 80px; /* Taille du logo dans l'en-tête (ajusté précédemment) */
-            width: auto;
-        }
-
-        /* Nouvelle classe pour les logos utilisés en remplacement de texte */
-        .inline-logo {
-            height: 1.2em; /* Taille relative à la taille de la police du texte environnant */
-            width: auto;
-            vertical-align: middle; /* Aligne l'image avec le texte */
-            margin: 0 0.2em; /* Un peu d'espace autour */
-        }
-
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: width 0.3s;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(107, 165, 57, 0.8), rgba(140, 94, 60, 0.9)), url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 6rem 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-
-        .btn:hover {
-            background-color: #5BA8B2; /* Une nuance légèrement plus foncée de secondary */
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-green {
-            background-color: var(--primary); /* Utilisé primary pour un bouton "green" */
-        }
-
-        .btn-green:hover {
-            background-color: #5F9032; /* Une nuance légèrement plus foncée de primary */
-        }
-
-        /* Magazine Cover */
-        .cover-section {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .cover-container {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .cover-image {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-            transform: rotate(-3deg);
-            transition: transform 0.3s;
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .cover-image:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .cover-title {
-            font-size: 3.5rem;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-        }
-
-        .cover-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .cover-tagline {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .cover-edition {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .cover-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: var(--secondary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            transform: rotate(5deg);
-        }
-
-        .cover-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .cover-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .cover-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: var(--dark);
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .feature {
-            background-color: var(--light);
-            padding: 15px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .feature i {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        /* Articles Section */
-        .articles-section {
-            padding: 5rem 0;
-            background-color: #f1f5f9;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            color: var(--dark);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Style pour rendre la carte d'article cliquable */
-        .article-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex; /* Maintenu pour la mise en page interne */
-            flex-direction: column;
-            height: 100%;
-            text-decoration: none; /* Enlève le soulignement des liens */
-            color: inherit; /* Hérite de la couleur du texte parent */
-            cursor: pointer; /* Indique que la carte est cliquable */
-        }
-
-        .article-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .article-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .article-content {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-        }
-
-        .article-content p {
-            color: var(--dark);
-            margin-bottom: 1.5rem;
-            flex: 1;
-        }
-
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--dark);
-            font-size: 0.9rem;
-        }
-
-        /* Team Section */
-        .team-section {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .team-member {
-            text-align: center;
-        }
-
-        .member-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            overflow: hidden;
-            border: 5px solid var(--light);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-
-        .team-member h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .team-member p {
-            color: var(--secondary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--light);
-            color: var(--primary);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* Browser Section */
-        .browser-section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: white;
-        }
-
-        .browser-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .browser-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .browser-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .browser-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .browser-image {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-        }
-
-        .magazine-preview {
-            background-color: white;
-            height: 400px;
-            border-radius: 10px;
-            display: flex;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .preview-page {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem;
-            color: var(--dark);
-        }
-
-        .preview-page h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .preview-page ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .preview-page li {
-            margin-bottom: 0.5rem;
-        }
-
-        .preview-page p {
-            color: var(--dark);
-            font-size: 1rem; /* Adjust font size for preview */
-        }
-
-        .qr-container {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .qr-code {
-            width: 80px;
-            height: 80px;
-            background: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.8rem;
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        .qr-text {
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 5rem 0;
-            background-color: #f1f5f9;
-        }
-
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            margin-bottom: 2rem;
-            color: var(--dark);
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 15px;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .contact-text h4 {
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 50px;
-            height: 3px;
-            background-color: var(--secondary);
-        }
-
-        .footer-col p {
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-
-        .social-footer {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-footer a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .social-footer a:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        .copyright a {
-            color: var(--secondary);
-            text-decoration: none;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 200; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-            opacity: 0; /* For fade-in effect */
-            transition: opacity 0.3s ease-in-out;
-            padding: 20px; /* Padding for small screens */
-        }
-
-        .modal.active {
-            display: flex; /* Show flex for centering */
-            opacity: 1;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-            width: 90%; /* Responsive width */
-            max-width: 900px; /* Max width */
-            animation-name: animatemodal;
-            animation-duration: 0.4s;
-            overflow: hidden; /* Ensure image doesn't overflow */
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px; /* Match modal content border-radius */
-        }
-
-        /* Add animation */
-        @keyframes animatemodal {
-            from {transform: scale(0.7); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
-        }
-
-        .close-button {
-            color: #fff;
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 201; /* Above modal content */
-            text-shadow: 0 0 5px rgba(0,0,0,0.8);
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            nav ul {
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .mobile-menu {
-                display: block;
-            }
-            
-            nav ul {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--dark);
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem 0;
-                gap: 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: all 0.4s ease;
-            }
-            
-            nav ul.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            nav ul li a {
-                display: block;
-                padding: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .btn {
-                padding: 10px 25px;
-                font-size: 1rem;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 15px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero {
-                padding: 4rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .cover-content h2,
-            .section-title h2,
-            .browser-content h2 {
-                font-size: 2rem;
-            }
-            
-            .cover-container,
-            .browser-container,
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .cover-image {
-                transform: rotate(0);
-            }
-
-            .modal-content {
-                width: 95%; /* Adjust width for smaller screens */
-            }
-        }
-    </style>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Foot Hors Zone | Magazine de football engagé</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+
+
+        :root {
+
+            --primary: #6BA539; /* Vert forêt */
+
+            --secondary: #6BC4CE; /* Bleu-vert eau */
+
+            --accent: #A8D08D; /* Vert clair */
+
+            --light: #E6E6E6; /* Gris très clair */
+
+            --dark: #8C5E3C; /* Brun terre */
+
+            --gray: #EAD98B; /* Jaune sable */
+
+        }
+
+
+
+        body {
+
+            background-color: #f8fafc;
+
+            color: var(--dark);
+
+            line-height: 1.6;
+
+            overflow-x: hidden;
+
+        }
+
+
+
+        /* Header & Navigation */
+
+        header {
+
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+
+            color: white;
+
+            padding: 1rem 0;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        .nav-container {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+
+        .logo {
+
+            font-size: 1.8rem;
+
+            font-weight: 700;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+
+        .logo img {
+
+            height: 80px; /* Taille du logo dans l'en-tête (ajusté précédemment) */
+
+            width: auto;
+
+        }
+
+
+
+        /* Nouvelle classe pour les logos utilisés en remplacement de texte */
+
+        .inline-logo {
+
+            height: 1.2em; /* Taille relative à la taille de la police du texte environnant */
+
+            width: auto;
+
+            vertical-align: middle; /* Aligne l'image avec le texte */
+
+            margin: 0 0.2em; /* Un peu d'espace autour */
+
+        }
+
+
+
+
+
+        nav ul {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 2rem;
+
+        }
+
+
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            font-size: 1.1rem;
+
+            position: relative;
+
+            transition: color 0.3s;
+
+        }
+
+
+
+        nav a:hover {
+
+            color: var(--accent);
+
+        }
+
+
+
+        nav a::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -5px;
+
+            left: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background-color: var(--secondary);
+
+            transition: width 0.3s;
+
+        }
+
+
+
+        nav a:hover::after {
+
+            width: 100%;
+
+        }
+
+
+
+        .mobile-menu {
+
+            display: none;
+
+            font-size: 1.5rem;
+
+            cursor: pointer;
+
+        }
+
+
+
+        /* Hero Section */
+
+        .hero {
+
+            background: linear-gradient(rgba(107, 165, 57, 0.8), rgba(140, 94, 60, 0.9)), url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: white;
+
+            padding: 6rem 0;
+
+            text-align: center;
+
+            position: relative;
+
+        }
+
+
+
+        .hero-content {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+
+        .hero h1 {
+
+            font-size: 3.5rem;
+
+            margin-bottom: 1rem;
+
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+
+        }
+
+
+
+        .hero p {
+
+            font-size: 1.4rem;
+
+            margin-bottom: 2rem;
+
+            max-width: 600px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+
+        }
+
+
+
+        .btn {
+
+            display: inline-block;
+
+            background-color: var(--secondary);
+
+            color: white;
+
+            padding: 12px 30px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: all 0.3s;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        .btn:hover {
+
+            background-color: #5BA8B2; /* Une nuance légèrement plus foncée de secondary */
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+        }
+
+
+
+        .btn-outline {
+
+            background: transparent;
+
+            border: 2px solid white;
+
+            margin-left: 15px;
+
+        }
+
+
+
+        .btn-outline:hover {
+
+            background-color: rgba(255, 255, 255, 0.1);
+
+        }
+
+
+
+        .btn-green {
+
+            background-color: var(--primary); /* Utilisé primary pour un bouton "green" */
+
+        }
+
+
+
+        .btn-green:hover {
+
+            background-color: #5F9032; /* Une nuance légèrement plus foncée de primary */
+
+        }
+
+
+
+        /* Magazine Cover */
+
+        .cover-section {
+
+            padding: 5rem 0;
+
+            background-color: white;
+
+        }
+
+
+
+        .cover-container {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 3rem;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .cover-image {
+
+            flex: 1;
+
+            min-width: 300px;
+
+            position: relative;
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            transform: rotate(-3deg);
+
+            transition: transform 0.3s;
+
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+
+            color: white;
+
+            padding: 3rem 2rem;
+
+            text-align: center;
+
+        }
+
+
+
+        .cover-image:hover {
+
+            transform: rotate(0deg) scale(1.02);
+
+        }
+
+
+
+        .cover-title {
+
+            font-size: 3.5rem;
+
+            line-height: 1;
+
+            margin-bottom: 1.5rem;
+
+            font-weight: 900;
+
+        }
+
+
+
+        .cover-subtitle {
+
+            font-size: 1.8rem;
+
+            margin-bottom: 2rem;
+
+            color: rgba(255,255,255,0.9);
+
+        }
+
+
+
+        .cover-tagline {
+
+            font-size: 1.2rem;
+
+            margin-bottom: 1rem;
+
+            font-style: italic;
+
+        }
+
+
+
+        .cover-edition {
+
+            font-size: 0.9rem;
+
+            opacity: 0.8;
+
+        }
+
+
+
+        .cover-badge {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 20px;
+
+            background-color: var(--secondary);
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 30px;
+
+            font-weight: 600;
+
+            transform: rotate(5deg);
+
+        }
+
+
+
+        .cover-content {
+
+            flex: 1;
+
+            min-width: 300px;
+
+        }
+
+
+
+        .cover-content h2 {
+
+            font-size: 2.5rem;
+
+            margin-bottom: 1.5rem;
+
+            color: var(--primary);
+
+        }
+
+
+
+        .cover-content p {
+
+            font-size: 1.1rem;
+
+            margin-bottom: 2rem;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .features {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 1rem;
+
+            margin-bottom: 2rem;
+
+        }
+
+
+
+        .feature {
+
+            background-color: var(--light);
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            flex: 1;
+
+            min-width: 200px;
+
+        }
+
+
+
+        .feature i {
+
+            color: var(--primary);
+
+            font-size: 1.5rem;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        /* Articles Section */
+
+        .articles-section {
+
+            padding: 5rem 0;
+
+            background-color: #f1f5f9;
+
+        }
+
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 3rem;
+
+        }
+
+
+
+        .section-title h2 {
+
+            font-size: 2.5rem;
+
+            color: var(--primary);
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .section-title p {
+
+            color: var(--dark);
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        .articles-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+
+
+        /* Style pour rendre la carte d'article cliquable */
+
+        .article-card {
+
+            background-color: white;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+            transition: transform 0.3s, box-shadow 0.3s;
+
+            display: flex; /* Maintenu pour la mise en page interne */
+
+            flex-direction: column;
+
+            height: 100%;
+
+            text-decoration: none; /* Enlève le soulignement des liens */
+
+            color: inherit; /* Hérite de la couleur du texte parent */
+
+            cursor: pointer; /* Indique que la carte est cliquable */
+
+        }
+
+
+
+        .article-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        .article-image {
+
+            height: 200px;
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+
+        .article-content {
+
+            padding: 1.5rem;
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+
+        .article-content h3 {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 0.8rem;
+
+            color: var(--primary);
+
+        }
+
+
+
+        .article-content p {
+
+            color: var(--dark);
+
+            margin-bottom: 1.5rem;
+
+            flex: 1;
+
+        }
+
+
+
+        .article-meta {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: var(--dark);
+
+            font-size: 0.9rem;
+
+        }
+
+
+
+        /* Team Section */
+
+        .team-section {
+
+            padding: 5rem 0;
+
+            background-color: white;
+
+        }
+
+
+
+        .team-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+            gap: 2.5rem;
+
+        }
+
+
+
+        .team-member {
+
+            text-align: center;
+
+        }
+
+
+
+        .member-photo {
+
+            width: 150px;
+
+            height: 150px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 1.5rem;
+
+            overflow: hidden;
+
+            border: 5px solid var(--light);
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 2.5rem;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .team-member h3 {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 0.5rem;
+
+            color: var(--primary);
+
+        }
+
+
+
+        .team-member p {
+
+            color: var(--secondary);
+
+            font-weight: 500;
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .social-links {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 1rem;
+
+            margin-top: 1rem;
+
+        }
+
+
+
+        .social-links a {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 50%;
+
+            background-color: var(--light);
+
+            color: var(--primary);
+
+            transition: all 0.3s;
+
+        }
+
+
+
+        .social-links a:hover {
+
+            background-color: var(--primary);
+
+            color: white;
+
+        }
+
+
+
+        /* Browser Section */
+
+        .browser-section {
+
+            padding: 5rem 0;
+
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+
+            color: white;
+
+        }
+
+
+
+        .browser-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 3rem;
+
+            align-items: center;
+
+        }
+
+
+
+        .browser-content {
+
+            flex: 1;
+
+            min-width: 300px;
+
+        }
+
+
+
+        .browser-content h2 {
+
+            font-size: 2.5rem;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .browser-content p {
+
+            font-size: 1.1rem;
+
+            margin-bottom: 2rem;
+
+            opacity: 0.9;
+
+        }
+
+
+
+        .browser-image {
+
+            flex: 1;
+
+            min-width: 300px;
+
+            position: relative;
+
+        }
+
+
+
+        .magazine-preview {
+
+            background-color: white;
+
+            height: 400px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            overflow: hidden;
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+        }
+
+
+
+        .preview-page {
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 2rem;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .preview-page h3 {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--primary);
+
+        }
+
+
+
+        .preview-page ul {
+
+            padding-left: 1.5rem;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .preview-page li {
+
+            margin-bottom: 0.5rem;
+
+        }
+
+
+
+        .preview-page p {
+
+            color: var(--dark);
+
+            font-size: 1rem; /* Adjust font size for preview */
+
+        }
+
+
+
+        .qr-container {
+
+            position: absolute;
+
+            bottom: 20px;
+
+            right: 20px;
+
+            background: white;
+
+            padding: 10px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+        }
+
+
+
+        .qr-code {
+
+            width: 80px;
+
+            height: 80px;
+
+            background: #333;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 0.8rem;
+
+            text-align: center;
+
+            border-radius: 5px;
+
+        }
+
+
+
+        .qr-text {
+
+            color: var(--dark);
+
+            font-weight: 600;
+
+        }
+
+
+
+        /* Contact Section */
+
+        .contact-section {
+
+            padding: 5rem 0;
+
+            background-color: #f1f5f9;
+
+        }
+
+
+
+        .contact-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 3rem;
+
+        }
+
+
+
+        .contact-info {
+
+            flex: 1;
+
+            min-width: 300px;
+
+        }
+
+
+
+        .contact-info h2 {
+
+            font-size: 2rem;
+
+            color: var(--primary);
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .contact-info p {
+
+            margin-bottom: 2rem;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .contact-details {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 1.5rem;
+
+        }
+
+
+
+        .contact-item {
+
+            display: flex;
+
+            gap: 15px;
+
+        }
+
+
+
+        .contact-icon {
+
+            width: 50px;
+
+            height: 50px;
+
+            background-color: var(--primary);
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.2rem;
+
+        }
+
+
+
+        .contact-text h4 {
+
+            margin-bottom: 5px;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .contact-form {
+
+            flex: 1;
+
+            min-width: 300px;
+
+            background-color: white;
+
+            padding: 2rem;
+
+            border-radius: 10px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+
+        .form-group {
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 0.5rem;
+
+            font-weight: 500;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .form-group input,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 12px 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            font-size: 1rem;
+
+            transition: border-color 0.3s;
+
+        }
+
+
+
+        .form-group input:focus,
+
+        .form-group textarea:focus {
+
+            border-color: var(--primary);
+
+            outline: none;
+
+        }
+
+
+
+        .form-group textarea {
+
+            height: 150px;
+
+            resize: vertical;
+
+        }
+
+
+
+        /* Footer */
+
+        footer {
+
+            background-color: var(--dark);
+
+            color: white;
+
+            padding: 3rem 0 1rem;
+
+        }
+
+
+
+        .footer-container {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 2rem;
+
+            margin-bottom: 3rem;
+
+        }
+
+
+
+        .footer-col h3 {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 1.5rem;
+
+            position: relative;
+
+        }
+
+
+
+        .footer-col h3::after {
+
+            content: '';
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: -8px;
+
+            width: 50px;
+
+            height: 3px;
+
+            background-color: var(--secondary);
+
+        }
+
+
+
+        .footer-col p {
+
+            margin-bottom: 1rem;
+
+            opacity: 0.8;
+
+        }
+
+
+
+        .footer-links {
+
+            list-style: none;
+
+        }
+
+
+
+        .footer-links li {
+
+            margin-bottom: 0.8rem;
+
+        }
+
+
+
+        .footer-links a {
+
+            color: rgba(255, 255, 255, 0.8);
+
+            text-decoration: none;
+
+            transition: all 0.3s;
+
+        }
+
+
+
+        .footer-links a:hover {
+
+            color: var(--secondary);
+
+            padding-left: 5px;
+
+        }
+
+
+
+        .social-footer {
+
+            display: flex;
+
+            gap: 1rem;
+
+            margin-top: 1rem;
+
+        }
+
+
+
+        .social-footer a {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: rgba(255, 255, 255, 0.1);
+
+            color: white;
+
+            transition: all 0.3s;
+
+        }
+
+
+
+        .social-footer a:hover {
+
+            background-color: var(--secondary);
+
+            transform: translateY(-3px);
+
+        }
+
+
+
+        .copyright {
+
+            text-align: center;
+
+            padding-top: 2rem;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+            font-size: 0.9rem;
+
+            opacity: 0.7;
+
+        }
+
+
+
+        .copyright a {
+
+            color: var(--secondary);
+
+            text-decoration: none;
+
+        }
+
+
+
+        /* Modal Styles */
+
+        .modal {
+
+            display: none; /* Hidden by default */
+
+            position: fixed; /* Stay in place */
+
+            z-index: 200; /* Sit on top */
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%; /* Full width */
+
+            height: 100%; /* Full height */
+
+            overflow: auto; /* Enable scroll if needed */
+
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+
+            justify-content: center;
+
+            align-items: center;
+
+            opacity: 0; /* For fade-in effect */
+
+            transition: opacity 0.3s ease-in-out;
+
+            padding: 20px; /* Padding for small screens */
+
+        }
+
+
+
+        .modal.active {
+
+            display: flex; /* Show flex for centering */
+
+            opacity: 1;
+
+        }
+
+
+
+        .modal-content {
+
+            position: relative;
+
+            background-color: #fefefe;
+
+            margin: auto;
+
+            padding: 0;
+
+            border-radius: 8px;
+
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+            width: 90%; /* Responsive width */
+
+            max-width: 900px; /* Max width */
+
+            animation-name: animatemodal;
+
+            animation-duration: 0.4s;
+
+            overflow: hidden; /* Ensure image doesn't overflow */
+
+        }
+
+
+
+        .modal-content img {
+
+            width: 100%;
+
+            height: auto;
+
+            display: block;
+
+            border-radius: 8px; /* Match modal content border-radius */
+
+        }
+
+
+
+        /* Add animation */
+
+        @keyframes animatemodal {
+
+            from {transform: scale(0.7); opacity: 0;}
+
+            to {transform: scale(1); opacity: 1;}
+
+        }
+
+
+
+        .close-button {
+
+            color: #fff;
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 25px;
+
+            font-size: 35px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 201; /* Above modal content */
+
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+
+        }
+
+
+
+        .close-button:hover,
+
+        .close-button:focus {
+
+            color: #bbb;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+        }
+
+
+
+
+
+        /* Responsive Design */
+
+        @media (max-width: 992px) {
+
+            .hero h1 {
+
+                font-size: 3rem;
+
+            }
+
+            
+
+            nav ul {
+
+                gap: 1.5rem;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 576px) {
+
+            .mobile-menu {
+
+                display: block;
+
+            }
+
+            
+
+            nav ul {
+
+                position: absolute;
+
+                top: 100%;
+
+                left: 0;
+
+                width: 100%;
+
+                background-color: var(--dark);
+
+                flex-direction: column;
+
+                align-items: center;
+
+                padding: 1rem 0;
+
+                gap: 0;
+
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+
+                transition: all 0.4s ease;
+
+            }
+
+            
+
+            nav ul.active {
+
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+            }
+
+            
+
+            nav ul li {
+
+                width: 100%;
+
+                text-align: center;
+
+            }
+
+            
+
+            nav ul li a {
+
+                display: block;
+
+                padding: 1rem;
+
+            }
+
+            
+
+            .hero h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 1.2rem;
+
+            }
+
+            
+
+            .btn {
+
+                padding: 10px 25px;
+
+                font-size: 1rem;
+
+            }
+
+
+
+            .btn-outline {
+
+                margin-left: 0;
+
+                margin-top: 15px;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 576px) {
+
+            .hero {
+
+                padding: 4rem 0;
+
+            }
+
+            
+
+            .hero h1 {
+
+                font-size: 2rem;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 1rem;
+
+            }
+
+            
+
+            .cover-content h2,
+
+            .section-title h2,
+
+            .browser-content h2 {
+
+                font-size: 2rem;
+
+            }
+
+            
+
+            .cover-container,
+
+            .browser-container,
+
+            .contact-container {
+
+                flex-direction: column;
+
+            }
+
+            
+
+            .cover-image {
+
+                transform: rotate(0);
+
+            }
+
+
+
+            .modal-content {
+
+                width: 95%; /* Adjust width for smaller screens */
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo">
-            </div>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#articles">Articles</a></li>
-                    <li><a href="#equipe">L'Équipe</a></li>
-                    <li><a href="#feuilleter">Feuilleter</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="mobile-menu" id="mobileMenu">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero" id="accueil">
-        <div class="container hero-content">
-            <h1>
-                <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" style="height: 300px; width: auto;">
-            </h1>
-            <p>QUAND LES CRAMPONS S'ENGAGENT POUR DEMAIN</p>
-            <div>
-                <a href="#articles" class="btn">Découvrir le magazine</a>
-                <a href="#feuilleter" class="btn btn-outline">Feuilleter en ligne</a>
-            </div>
-        </div>
-    </section>
+    <header>
 
-    <section class="cover-section">
-        <div class="container cover-container">
-            <div class="cover-image">
-                <div class="cover-badge">NOUVEAU</div>
-                <div class="cover-title">
-                    <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" style="height: 200px; width: auto;">
-                </div>
-                <div class="cover-subtitle">QUAND LES CRAMPONS S'ENGAGENT POUR DEMAIN</div>
-                <div class="cover-edition">
-                    <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" class="inline-logo"> - EDITION 01 · ETE 2025
-                </div>
-            </div>
-            <div class="cover-content">
-                <h2>Un autre football est possible</h2>
-                <p>Découvrez notre premier numéro dédié à un football plus écologique, plus responsable et plus engagé. Des clubs aux joueurs, en passant par les supporters, nous explorons comment le ballon rond peut devenir un acteur majeur de la transition écologique.</p>
-                
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-leaf"></i>
-                        <h3>Écologie</h3>
-                        <p>Le football face aux défis environnementaux</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-users"></i>
-                        <h3>Engagement</h3>
-                        <p>Joueurs et clubs qui font la différence</p>
-                    </div>
-                </div>
-                
-                <a href="#articles" class="btn">Lire les articles</a>
-            </div>
-        </div>
-    </section>
+        <div class="container nav-container">
 
-    <section class="articles-section" id="articles">
-        <div class="container">
-            <div class="section-title">
-                <h2>Articles à la Une</h2>
-                <p>Découvrez les sujets passionnants de notre première édition</p>
-            </div>
-            
-            <div class="articles-grid">
-                <a href="mag jpg/page 4 projet le club vert.png" class="article-card">
-                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-                    <div class="article-content">
-                        <h3>Forest Green Rovers, le club 100% green</h3>
-                        <p>Découvrez comment ce petit club anglais est devenu le club le plus écologique du monde, certifié neutre en carbone par la FIFA. Leur stade est alimenté par des panneaux solaires et leur pelouse est entretenue sans produits chimiques.</p>
-                        <div class="article-meta">
-                            <span><i class="far fa-clock"></i> 8 min</span>
-                            <span><i class="far fa-newspaper"></i> Page 4</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="mag jpg/page 5 joeur bio.png" class="article-card">
-                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-                    <div class="article-content">
-                        <h3>Ibrahim Kanté, le joueur qui plante des arbres</h3>
-                        <p>Portrait d'un défenseur qui reverse 10% de son salaire pour reforester l'Afrique et milite pour un football plus responsable. "Je veux que mes enfants jouent sur un terrain, pas dans un désert."</p>
-                        <div class="article-meta">
-                            <span><i class="far fa-clock"></i> 6 min</span>
-                            <span><i class="far fa-newspaper"></i> Page 5</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="mag jpg/page 3.jpg" class="article-card">
-                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-                    <div class="article-content">
-                        <h3>Un ballon pour se sentir bien</h3>
-                        <p>Les bienfaits du football sur la santé physique et mentale. Un sport complet qui va bien au-delà du simple jeu. Avec plus de 250 millions de joueurs dans le monde, le foot est une véritable force sociale.</p>
-                        <div class="article-meta">
-                            <span><i class="far fa-clock"></i> 5 min</span>
-                            <span><i class="far fa-newspaper"></i> Page 3</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="mag jpg/page 7 stade et déchet.png" class="article-card">
-                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560272564-c83ee6d4f4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-                    <div class="article-content">
-                        <h3>Un stade, zéro déchet ?</h3>
-                        <p>Comment les éco-supporters transforment les tribunes en terrain d'engagement écologique. Un match de Ligue 1 produit environ 15 tonnes de déchets. Et si les tribunes devenaient le premier terrain d'engagement ?</p>
-                        <div class="article-meta">
-                            <span><i class="far fa-clock"></i> 7 min</span>
-                            <span><i class="far fa-newspaper"></i> Page 7</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
+            <div class="logo">
 
-    <section class="team-section" id="equipe">
-        <div class="container">
-            <div class="section-title">
-                <h2>Notre Équipe</h2>
-                <p>Le passionné derrière Foot Hors Zone</p>
-            </div>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo">
-                        TG
-                    </div>
-                    <h3>Tom Gigli</h3>
-                    <p>Créateur</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo">
 
-    <section class="browser-section" id="feuilleter">
-        <div class="container browser-container">
-            <div class="browser-content">
-                <h2>Feuilletez notre magazine</h2>
-                <p>Découvrez l'intégralité de notre première édition en version numérique. Parcourez chaque page, découvrez nos reportages exclusifs et nos analyses approfondies sur l'engagement écologique dans le monde du football.</p>
-                <a href="magazine.html" class="btn">Lire le magazine complet</a>
-            </div>
-            <div class="browser-image">
-                <div class="magazine-preview">
-                    <div class="preview-page">
-                        <h3>Sommaire</h3>
-                        <ul>
-                            <li>Bienfaits du foot sur la santé</li>
-                            <li>Le club le plus vert du monde</li>
-                            <li>Portrait d'un joueur engagé</li>
-                            <li>Culture : éco-fans et tifos verts</li>
-                            <li>Un stade, zéro déchet?</li>
-                        </ul>
-                        <p>...et bien plus encore !</p>
-                    </div>
-                </div>
-                <div class="qr-container">
-                    <div class="qr-code">QR</div>
-                    <div class="qr-text">Scannez pour découvrir</div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </div>
 
-    <section class="contact-section" id="contact">
-        <div class="container contact-container">
-            <div class="contact-info">
-                <h2>Contactez-nous</h2>
-                <p>Une question, une suggestion ou une envie de contribuer ? N'hésitez pas à nous laisser un message !</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="contact-text">
-                            <h4>Adresse</h4>
-                            <p>123 Rue du Ballon Rond, 75000 Paris, France</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                        <div class="contact-text">
-                            <h4>Téléphone</h4>
-                            <p>+33 1 23 45 67 89</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>contact@foothorszone.fr</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Nom Complet</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Adresse Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Sujet</label>
-                        <input type="text" id="subject" name="subject">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Votre Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-green">Envoyer le message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+            <nav>
 
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-col">
-                <h3>Foot Hors Zone</h3>
-                <p>Le magazine qui explore le football sous un angle nouveau : celui de l'engagement écologique et social. Un autre foot est possible.</p>
-                <div class="social-footer">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h3>Liens Rapides</h3>
-                <ul class="footer-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#articles">Articles</a></li>
-                    <li><a href="#equipe">L'Équipe</a></li>
-                    <li><a href="#feuilleter">Feuilleter</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Catégories</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Écologie & Foot</a></li>
-                    <li><a href="#">Joueurs engagés</a></li>
-                    <li><a href="#">Impact social</a></li>
-                    <li><a href="#">Interview</a></li>
-                    <li><a href="#">Analyses</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Newsletter</h3>
-                <p>Recevez nos dernières actualités directement dans votre boîte mail.</p>
-                <form action="#" method="POST" style="display: flex; gap: 10px;">
-                    <input type="email" placeholder="Votre email" style="padding: 10px; border-radius: 5px; border: none; flex-grow: 1;">
-                    <button type="submit" class="btn" style="padding: 10px 15px; border-radius: 5px; font-size: 1rem;">S'abonner</button>
-                </form>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2025 Foot Hors Zone. Tous droits réservés. Design par <a href="https://github.com/votre-profil" target="_blank">Tom Gigli</a>.
-        </div>
-    </footer>
+                <ul id="navMenu">
 
-    <script>
-        // JavaScript pour le menu mobile (tel que vous l'aviez)
-        document.getElementById('mobileMenu').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-    </script>
-</body>
-</html>
+                    <li><a href="#accueil">Accueil</a></li>
+
+                    <li><a href="#articles">Articles</a></li>
+
+                    <li><a href="#equipe">L'Équipe</a></li>
+
+                    <li><a href="#feuilleter">Feuilleter</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+                <div class="mobile-menu" id="mobileMenu">
+
+                    <i class="fas fa-bars"></i>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="hero" id="accueil">
+
+        <div class="container hero-content">
+
+            <h1>
+
+                <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" style="height: 300px; width: auto;">
+
+            </h1>
+
+            <p>QUAND LES CRAMPONS S'ENGAGENT POUR DEMAIN</p>
+
+            <div>
+
+                <a href="#articles" class="btn">Découvrir le magazine</a>
+
+                <a href="#feuilleter" class="btn btn-outline">Feuilleter en ligne</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="cover-section">
+
+        <div class="container cover-container">
+
+            <div class="cover-image">
+
+                <div class="cover-badge">NOUVEAU</div>
+
+                <div class="cover-title">
+
+                    <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" style="height: 200px; width: auto;">
+
+                </div>
+
+                <div class="cover-subtitle">QUAND LES CRAMPONS S'ENGAGENT POUR DEMAIN</div>
+
+                <div class="cover-edition">
+
+                    <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" class="inline-logo"> - EDITION 01 · ETE 2025
+
+                </div>
+
+            </div>
+
+            <div class="cover-content">
+
+                <h2>Un autre football est possible</h2>
+
+                <p>Découvrez notre premier numéro dédié à un football plus écologique, plus responsable et plus engagé. Des clubs aux joueurs, en passant par les supporters, nous explorons comment le ballon rond peut devenir un acteur majeur de la transition écologique.</p>
+
+                
+
+                <div class="features">
+
+                    <div class="feature">
+
+                        <i class="fas fa-leaf"></i>
+
+                        <h3>Écologie</h3>
+
+                        <p>Le football face aux défis environnementaux</p>
+
+                    </div>
+
+                    <div class="feature">
+
+                        <i class="fas fa-users"></i>
+
+                        <h3>Engagement</h3>
+
+                        <p>Joueurs et clubs qui font la différence</p>
+
+                    </div>
+
+                </div>
+
+                
+
+                <a href="#articles" class="btn">Lire les articles</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="articles-section" id="articles">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Articles à la Une</h2>
+
+                <p>Découvrez les sujets passionnants de notre première édition</p>
+
+            </div>
+
+            
+
+            <div class="articles-grid">
+
+                <a href="mag jpg/page 4 projet le club vert.png" class="article-card">
+
+                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+
+                    <div class="article-content">
+
+                        <h3>Forest Green Rovers, le club 100% green</h3>
+
+                        <p>Découvrez comment ce petit club anglais est devenu le club le plus écologique du monde, certifié neutre en carbone par la FIFA. Leur stade est alimenté par des panneaux solaires et leur pelouse est entretenue sans produits chimiques.</p>
+
+                        <div class="article-meta">
+
+                            <span><i class="far fa-clock"></i> 8 min</span>
+
+                            <span><i class="far fa-newspaper"></i> Page 4</span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+                
+
+                <a href="mag jpg/page 5 joeur bio.png" class="article-card">
+
+                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+
+                    <div class="article-content">
+
+                        <h3>Ibrahim Kanté, le joueur qui plante des arbres</h3>
+
+                        <p>Portrait d'un défenseur qui reverse 10% de son salaire pour reforester l'Afrique et milite pour un football plus responsable. "Je veux que mes enfants jouent sur un terrain, pas dans un désert."</p>
+
+                        <div class="article-meta">
+
+                            <span><i class="far fa-clock"></i> 6 min</span>
+
+                            <span><i class="far fa-newspaper"></i> Page 5</span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+                
+
+                <a href="mag jpg/page 3.jpg" class="article-card">
+
+                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+
+                    <div class="article-content">
+
+                        <h3>Un ballon pour se sentir bien</h3>
+
+                        <p>Les bienfaits du football sur la santé physique et mentale. Un sport complet qui va bien au-delà du simple jeu. Avec plus de 250 millions de joueurs dans le monde, le foot est une véritable force sociale.</p>
+
+                        <div class="article-meta">
+
+                            <span><i class="far fa-clock"></i> 5 min</span>
+
+                            <span><i class="far fa-newspaper"></i> Page 3</span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+                
+
+                <a href="mag jpg/page 7 stade et déchet.png" class="article-card">
+
+                    <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560272564-c83ee6d4f4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+
+                    <div class="article-content">
+
+                        <h3>Un stade, zéro déchet ?</h3>
+
+                        <p>Comment les éco-supporters transforment les tribunes en terrain d'engagement écologique. Un match de Ligue 1 produit environ 15 tonnes de déchets. Et si les tribunes devenaient le premier terrain d'engagement ?</p>
+
+                        <div class="article-meta">
+
+                            <span><i class="far fa-clock"></i> 7 min</span>
+
+                            <span><i class="far fa-newspaper"></i> Page 7</span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="team-section" id="equipe">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Notre Équipe</h2>
+
+                <p>Le passionné derrière Foot Hors Zone</p>
+
+            </div>
+
+            
+
+            <div class="team-grid">
+
+                <div class="team-member">
+
+                    <div class="member-photo">
+
+                        TG
+
+                    </div>
+
+                    <h3>Tom Gigli</h3>
+
+                    <p>Créateur</p>
+
+                    <div class="social-links">
+
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="browser-section" id="feuilleter">
+
+        <div class="container browser-container">
+
+            <div class="browser-content">
+
+                <h2>Feuilletez notre magazine</h2>
+
+                <p>Découvrez l'intégralité de notre première édition en version numérique. Parcourez chaque page, découvrez nos reportages exclusifs et nos analyses approfondies sur l'engagement écologique dans le monde du football.</p>
+
+                <a href="#" class="btn">Lire le magazine complet</a>
+
+            </div>
+
+            <div class="browser-image">
+
+                <div class="magazine-preview">
+
+                    <div class="preview-page">
+
+                        <h3>Sommaire</h3>
+
+                        <ul>
+
+                            <li>B
