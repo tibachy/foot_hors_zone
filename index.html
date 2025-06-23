@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foot Hors Zone | Magazine de football engagé</title>
-    <link rel="icon" href="logo/foot hors zone pdf.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -736,7 +735,7 @@
             text-decoration: none;
         }
 
-        /* Modal Styles (conserver au cas où vous en ayez besoin pour d'autres usages) */
+        /* Modal Styles */
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
@@ -786,7 +785,7 @@
             to {transform: scale(1); opacity: 1;}
         }
 
-        .close-button-modal { /* Renommé pour éviter le conflit avec le bouton de fermeture du magazine */
+        .close-button {
             color: #fff;
             position: absolute;
             top: 15px;
@@ -798,8 +797,8 @@
             text-shadow: 0 0 5px rgba(0,0,0,0.8);
         }
 
-        .close-button-modal:hover,
-        .close-button-modal:focus {
+        .close-button:hover,
+        .close-button:focus {
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
@@ -897,6 +896,10 @@
             .cover-image {
                 transform: rotate(0);
             }
+
+            .modal-content {
+                width: 95%; /* Adjust width for smaller screens */
+            }
         }
     </style>
 </head>
@@ -976,7 +979,7 @@
             </div>
             
             <div class="articles-grid">
-                <a href="magazine-pages/page 4 projet le club vert.jpg" class="article-card" target="_blank">
+                <a href="mag jpg/page 4 projet le club vert.png" class="article-card">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Forest Green Rovers, le club 100% green</h3>
@@ -988,7 +991,7 @@
                     </div>
                 </a>
                 
-                <a href="magazine-pages/page 5 joeur bio.jpg" class="article-card" target="_blank">
+                <a href="mag jpg/page 5 joeur bio.png" class="article-card">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Ibrahim Kanté, le joueur qui plante des arbres</h3>
@@ -1000,7 +1003,7 @@
                     </div>
                 </a>
                 
-                <a href="magazine-pages/page 3.jpg" class="article-card" target="_blank">
+                <a href="mag jpg/page 3.jpg" class="article-card">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Un ballon pour se sentir bien</h3>
@@ -1012,7 +1015,7 @@
                     </div>
                 </a>
                 
-                <a href="magazine-pages/page 7 stade et déchet.jpg" class="article-card" target="_blank">
+                <a href="mag jpg/page 7 stade et déchet.png" class="article-card">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560272564-c83ee6d4f4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Un stade, zéro déchet ?</h3>
@@ -1183,16 +1186,6 @@
         // JavaScript pour le menu mobile (tel que vous l'aviez)
         document.getElementById('mobileMenu').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        // Script pour ouvrir les images d'articles dans un nouvel onglet (comportement actuel)
-        document.querySelectorAll('.article-card').forEach(card => {
-            card.addEventListener('click', function(event) {
-                // Prevent default link behavior if you want to handle it otherwise
-                // event.preventDefault(); 
-                // The target="_blank" in HTML already handles opening in a new tab.
-                // This JS is mostly for general purpose or if you want to add more complex logic.
-            });
         });
     </script>
 </body>
