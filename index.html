@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foot Hors Zone | Magazine de football engagé</title>
+    <link rel="icon" href="logo/foot hors zone pdf.jpeg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -61,7 +62,7 @@
         }
 
         .logo img {
-            height: 80px; /* Taille du logo dans l'en-tête (ajusté précédemment) */
+            height: 80px; /* Taille du logo dans l'en-tête */
             width: auto;
         }
 
@@ -443,7 +444,7 @@
             color: white;
         }
 
-        /* Browser Section */
+        /* Browser Section (Feuilleter le magazine) */
         .browser-section {
             padding: 5rem 0;
             background: linear-gradient(135deg, var(--primary), var(--dark));
@@ -735,76 +736,6 @@
             text-decoration: none;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 200; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-            opacity: 0; /* For fade-in effect */
-            transition: opacity 0.3s ease-in-out;
-            padding: 20px; /* Padding for small screens */
-        }
-
-        .modal.active {
-            display: flex; /* Show flex for centering */
-            opacity: 1;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-            width: 90%; /* Responsive width */
-            max-width: 900px; /* Max width */
-            animation-name: animatemodal;
-            animation-duration: 0.4s;
-            overflow: hidden; /* Ensure image doesn't overflow */
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px; /* Match modal content border-radius */
-        }
-
-        /* Add animation */
-        @keyframes animatemodal {
-            from {transform: scale(0.7); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
-        }
-
-        .close-button {
-            color: #fff;
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 201; /* Above modal content */
-            text-shadow: 0 0 5px rgba(0,0,0,0.8);
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -896,10 +827,6 @@
             .cover-image {
                 transform: rotate(0);
             }
-
-            .modal-content {
-                width: 95%; /* Adjust width for smaller screens */
-            }
         }
     </style>
 </head>
@@ -907,7 +834,7 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo">
+                <img src="logo/foot hors zone pdf.jpeg" alt="Foot Hors Zone Logo">
             </div>
             <nav>
                 <ul id="navMenu">
@@ -927,7 +854,7 @@
     <section class="hero" id="accueil">
         <div class="container hero-content">
             <h1>
-                <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" style="height: 300px; width: auto;">
+                <img src="logo/foot hors zone pdf.jpeg" alt="Foot Hors Zone Logo" style="height: 300px; width: auto;">
             </h1>
             <p>QUAND LES CRAMPONS S'ENGAGENT POUR DEMAIN</p>
             <div>
@@ -942,11 +869,11 @@
             <div class="cover-image">
                 <div class="cover-badge">NOUVEAU</div>
                 <div class="cover-title">
-                    <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" style="height: 200px; width: auto;">
+                    <img src="logo/foot hors zone pdf.jpeg" alt="Foot Hors Zone Logo" style="height: 200px; width: auto;">
                 </div>
                 <div class="cover-subtitle">QUAND LES CRAMPONS S'ENGAGENT POUR DEMAIN</div>
                 <div class="cover-edition">
-                    <img src="logo/foot hors zone pdf.png" alt="Foot Hors Zone Logo" class="inline-logo"> - EDITION 01 · ETE 2025
+                    <img src="logo/foot hors zone pdf.jpeg" alt="Foot Hors Zone Logo" class="inline-logo"> - EDITION 01 · ETE 2025
                 </div>
             </div>
             <div class="cover-content">
@@ -979,7 +906,7 @@
             </div>
             
             <div class="articles-grid">
-                <a href="mag jpg/page 4 projet le club vert.png" class="article-card">
+                <a href="magazine-pages/page 4 projet le club vert.jpg" class="article-card" target="_blank">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Forest Green Rovers, le club 100% green</h3>
@@ -991,7 +918,7 @@
                     </div>
                 </a>
                 
-                <a href="mag jpg/page 5 joeur bio.png" class="article-card">
+                <a href="magazine-pages/page 5 joeur bio.jpg" class="article-card" target="_blank">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Ibrahim Kanté, le joueur qui plante des arbres</h3>
@@ -1003,11 +930,11 @@
                     </div>
                 </a>
                 
-                <a href="mag jpg/page 3.jpg" class="article-card">
+                <a href="magazine-pages/page 3.jpg" class="article-card" target="_blank">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Un ballon pour se sentir bien</h3>
-                        <p>Les bienfaits du football sur la santé physique et mentale. Un sport complet qui va bien au-delà du simple jeu. Avec plus de 250 millions de joueurs dans le monde, le foot est une véritable force sociale.</p>
+                        <p>Les bienfaits du football sur la santé physique et mentale. Un sport complet qui va bien au-delà du simple jeu. Avec plus de 250 million de joueurs dans le monde, le foot est une véritable force sociale.</p>
                         <div class="article-meta">
                             <span><i class="far fa-clock"></i> 5 min</span>
                             <span><i class="far fa-newspaper"></i> Page 3</span>
@@ -1015,7 +942,7 @@
                     </div>
                 </a>
                 
-                <a href="mag jpg/page 7 stade et déchet.png" class="article-card">
+                <a href="magazine-pages/page 7 stade et déchet.jpg" class="article-card" target="_blank">
                     <div class="article-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560272564-c83ee6d4f4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="article-content">
                         <h3>Un stade, zéro déchet ?</h3>
@@ -1183,7 +1110,6 @@
     </footer>
 
     <script>
-        // JavaScript pour le menu mobile (tel que vous l'aviez)
         document.getElementById('mobileMenu').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });
